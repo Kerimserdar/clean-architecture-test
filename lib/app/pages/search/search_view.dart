@@ -55,12 +55,21 @@ class _SearchViewState extends ViewState<SearchView, SearchController> {
                         )
                       ],
                     ),
-                    for (int i = 0; i < controller.search.length; i++)
-                      Container(
-                        child: Text(
-                          controller.search[i].text,
-                        ),
-                      )
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.5,
+                      child: ListView.separated(
+                        itemCount: controller.search.length,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const Divider(),
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                            title: Text(
+                              controller.search[index].text,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 );
               }),
