@@ -16,9 +16,24 @@ class SearchController extends Controller {
     _presenter.addSearchHistoryOnError = (e) {
       print(e);
     };
+
+    _presenter.getSearchHistoryOnNext = (List<Search> response) {
+      search = response;
+      refreshUI();
+    };
+    _presenter.getSearchHistoryOnError = (e) {
+      print(e);
+    };
   }
 
   void addSearchHistory(Search search) {
     _presenter.addSearchHistory(search);
+  }
+
+  @override
+  void onInitState() {
+    _presenter.getSearchHistory();
+
+    super.onInitState();
   }
 }

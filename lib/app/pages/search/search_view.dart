@@ -31,25 +31,36 @@ class _SearchViewState extends ViewState<SearchView, SearchController> {
             children: [
               ControlledWidgetBuilder<SearchController>(
                   builder: (context, controller) {
-                return Row(
+                return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      width: 250,
-                      child: TextFormField(
-                        controller: _textController,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: 250,
+                          child: TextFormField(
+                            controller: _textController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
                         ),
-                      ),
+                        IconButton(
+                          onPressed: () {
+                            controller.addSearchHistory(
+                                Search("", _textController.text, ""));
+                          },
+                          icon: Icon(Icons.search),
+                        )
+                      ],
                     ),
-                    IconButton(
-                      onPressed: () {
-                        controller.addSearchHistory(
-                            Search("", _textController.text, ""));
-                      },
-                      icon: Icon(Icons.search),
-                    )
+                    for (int i = 0; i < controller.search.length; i++)
+                      Container(
+                        child: Text(
+                          controller.search[i].text,
+                        ),
+                      )
                   ],
                 );
               }),
