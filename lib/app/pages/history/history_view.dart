@@ -6,7 +6,9 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 class HistoryView extends View {
   @override
   State<StatefulWidget> createState() => _HistoryViewState(
-        HistoryController(DataSearchRepository()),
+        HistoryController(
+          DataSearchRepository(),
+        ),
       );
 }
 
